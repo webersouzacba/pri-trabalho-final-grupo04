@@ -1,184 +1,66 @@
-# PRI 2025/2026 — Trabalho Final — Grupo 04
+# Indexação da Coleção CHAVE e Avaliação com QA@CLEF 2008
 
-**Pesquisa e Recuperação de Informação**  
-Mestrado em Engenharia Informática e Tecnologia Web (MEIW)  
-Universidade Aberta / UTAD — Ano letivo 2025/2026
+**Unidade Curricular:** Pesquisa e Recuperação de Informação (PRI)  
+**Programa:** Mestrado em Engenharia Informática e Tecnologia Web (MEIW)  
+**Instituição:** Universidade Aberta / UTAD  
+**Ano letivo:** 2025/2026
 
 ---
 
-## Descrição
+## Sobre o trabalho
 
-Este repositório contém os artefactos técnicos do Trabalho Final da unidade curricular de Pesquisa e Recuperação de Informação (PRI). O trabalho consiste na indexação da **Coleção CHAVE** — corpus jornalístico em língua portuguesa dos anos de 1994 e 1995 — no motor de busca **Meilisearch v1.13.0**, e na avaliação do sistema com as **200 questões do QA@CLEF 2008 (PT-PT)**.
+Este repositório documenta o Trabalho Final da unidade curricular de Pesquisa e Recuperação de Informação, realizado pelo Grupo 04. O trabalho consiste na construção de um sistema de recuperação de informação sobre a **Coleção CHAVE** — corpus jornalístico em língua portuguesa dos anos de 1994 e 1995 — e na sua avaliação com as **200 questões do QA@CLEF 2008** em português europeu.
 
-O trabalho dá continuidade direta ao **Trabalho B** do mesmo grupo, no qual o Meilisearch foi instalado, configurado e avaliado com o corpus de filmes disponibilizado pela plataforma.
+O sistema foi construído sobre o motor de indexação **Meilisearch v1.13.0**, cuja instalação, configuração e validação inicial foram realizadas no Trabalho B da mesma unidade curricular. O Trabalho Final estende esse trabalho anterior com um corpus de escala real e um protocolo de avaliação baseado num benchmark estabelecido na literatura de recuperação de informação em língua portuguesa.
 
 ### Grupo 04
 
-| Estudante | Número |
-|-----------|--------|
+| Estudante | Número de aluno |
+|-----------|----------------|
 | Weber Marcelo Guirra de Souza | al77734 |
 | Mário Nogueira | al2501476 |
 | Saiton Silva | al2501481 |
 
+**Orientadores:** Prof. Vitor Rocio (Universidade Aberta) · Prof. António Jorge Gouveia (UTAD)
+
 ---
 
-## Resultados Principais
+## Resultados principais
 
-| Métrica | Valor |
-|---------|-------|
-| Documentos indexados | 210.734 |
-| Cobertura global (QA@CLEF 2008) | 99,0% (198/200) |
-| Tempo médio de resposta | 71,3 ms |
-| Duração total da indexação | ≈ 19 minutos |
+O sistema indexou 210.734 artigos jornalísticos extraídos da Coleção CHAVE e respondeu às 200 questões do QA@CLEF 2008 com uma cobertura global de 99,0%, num tempo médio de resposta de 71 ms por consulta.
+
+| Indicador | Valor |
+|-----------|-------|
+| Corpus indexado | Coleção CHAVE (Público + Folha de São Paulo, 1994–1995) |
+| Documentos indexados | 210.734 artigos jornalísticos |
+| Questões avaliadas | 200 (QA@CLEF 2008, PT-PT) |
+| Cobertura global | 99,0% (198 de 200 questões com resultado) |
+| Tempo médio de resposta | 71,3 ms por consulta |
+| Duração da indexação | 19 minutos (1.138 segundos) |
 | Motor de indexação | Meilisearch v1.13.0 |
-| Ambiente de produção | VPS OCI NVMe 2 — AlmaLinux 9.7 — 3,6 GB RAM |
 | Endpoint público | http://meilisearch.webersouza.com.br |
 
 ---
 
-## Estrutura do Repositório
+## Corpus e dados de avaliação
 
-```
-pri-trabalho-final-grupo04/
-│
-├── README.md                          # Este ficheiro
-│
-├── corpus/
-│   └── README_corpus.md               # Instruções para obter a Coleção CHAVE via Linguateca
-│                                      # (os ficheiros SGML não são redistribuíveis)
-│
-├── scripts/
-│   ├── 01_preprocessar_chave.py       # Pré-processamento: SGML → JSON em lotes
-│   ├── 02_indexar_chave.py            # Indexação dos lotes JSON no Meilisearch
-│   ├── 03_consultas_qa.py             # Consultas QA@CLEF 2008 e exportação de resultados
-│   └── resolucao_anaforas.py          # Dicionário de resolução manual de dependências anafóricas
-│
-├── qa/
-│   └── QA-CLEF08-PT-PT_test.xml       # Conjunto de 200 questões QA@CLEF 2008 (PT-PT)
-│
-├── resultados/
-│   ├── resultados_original.csv        # Top-10 documentos para cada pergunta (modo original)
-│   ├── resultados_resolvida.csv       # Top-10 documentos para cada pergunta (modo resolvido)
-│   ├── metricas.json                  # Métricas de cobertura e tempo dos dois modos
-│   ├── relatorio_preprocessamento.json # Estatísticas do pré-processamento do corpus
-│   └── relatorio_indexacao.json       # Estatísticas da indexação (tempos por lote, erros)
-│
-├── avaliacao/
-│   └── avaliacao_qualitativa_qa.xlsx  # Planilha de avaliação qualitativa (200 perguntas)
-│
-└── relatorio/
-    └── Trabalho_Final_PRI_Grupo04.pdf # Relatório final em PDF (após submissão)
-```
+A **Coleção CHAVE** foi compilada pela [Linguateca](http://www.linguateca.pt/CHAVE/) no âmbito das avaliações CLEF (*Cross-Language Evaluation Forum*) e constitui o principal recurso de avaliação de sistemas de recuperação de informação em língua portuguesa. Inclui edições integrais de dois jornais lusófonos: o **Público** (Portugal) e a **Folha de São Paulo** (Brasil), cobrindo os anos de 1994 e 1995.
+
+Por restrições de direitos de uso, os ficheiros do corpus não são redistribuíveis e não estão incluídos neste repositório. A pasta `corpus/` contém instruções para solicitar acesso à Linguateca.
+
+As **questões de avaliação** provêm do conjunto de teste do QA@CLEF 2008 para português europeu (`qa/QA-CLEF08-PT-PT_test.xml`), composto por 200 perguntas factuais em linguagem natural, organizadas em grupos temáticos. Os resultados obtidos neste trabalho não constituem avaliação oficial CLEF.
 
 ---
 
-## Pré-requisitos
+## Pipeline técnico
 
-### Pré-processamento local (sua máquina)
+O trabalho implementa um pipeline de três fases, cada uma documentada num script Python independente que usa apenas a biblioteca padrão da linguagem.
 
-- Python 3.6 ou superior
-- Apenas biblioteca padrão (sem dependências externas)
-- Os ficheiros `CHAVEPublico.zip` e `CHAVEFolha.zip` obtidos via [Linguateca](http://www.linguateca.pt/CHAVE/)
+### Fase 1 — Pré-processamento (`scripts/01_preprocessar_chave.py`)
 
-### Indexação e consultas (servidor)
+Extrai os artigos dos ficheiros SGML da Coleção CHAVE, converte a codificação de ISO-8859-1 para UTF-8 e serializa o resultado em ficheiros JSON em lotes de 5.000 documentos. O processo gerou 43 ficheiros JSON a partir de 1.456 ficheiros SGML, sem dependências externas.
 
-- Meilisearch v1.13.0 instalado e em execução
-- Python 3.6 ou superior (apenas biblioteca padrão)
-- Acesso SSH ao servidor
-
----
-
-## Como Utilizar
-
-### 1. Pré-processamento (executa localmente)
-
-Coloque os dois ficheiros ZIP da Coleção CHAVE na mesma pasta que o script e execute:
-
-```bash
-python3 scripts/01_preprocessar_chave.py \
-    --publico CHAVEPublico.zip \
-    --folha   CHAVEFolha.zip \
-    --saida   ./json_lotes \
-    --lote    5000
-```
-
-O script gera ficheiros `chave_lote_NNNN.json` na pasta de saída e um relatório `relatorio_preprocessamento.json` com os totais.
-
-No Windows (PowerShell), use a versão em linha única:
-
-```powershell
-python scripts/01_preprocessar_chave.py --publico CHAVEPublico.zip --folha CHAVEFolha.zip --saida ./json_lotes --lote 5000
-```
-
-**Saída esperada:** 43 ficheiros JSON, 210.453 documentos extraídos, ≈ 590 MB.
-
-### 2. Transferência para o servidor
-
-```bash
-scp -P PORTA -r ./json_lotes/ utilizador@servidor:/opt/pri-trabalho-final/
-scp -P PORTA scripts/02_indexar_chave.py utilizador@servidor:/opt/pri-trabalho-final/
-scp -P PORTA scripts/03_consultas_qa.py utilizador@servidor:/opt/pri-trabalho-final/
-scp -P PORTA scripts/resolucao_anaforas.py utilizador@servidor:/opt/pri-trabalho-final/
-scp -P PORTA qa/QA-CLEF08-PT-PT_test.xml utilizador@servidor:/opt/pri-trabalho-final/
-```
-
-### 3. Indexação (executa no servidor)
-
-```bash
-cd /opt/pri-trabalho-final
-python3 02_indexar_chave.py --chave SUA_MASTER_KEY
-```
-
-Opções disponíveis:
-
-```
---pasta    Pasta com os ficheiros JSON   (padrão: ./json_lotes)
---host     Endereço do Meilisearch       (padrão: http://localhost:7700)
---chave    Master key do Meilisearch     (obrigatório)
---indice   Nome do índice                (padrão: chave)
-```
-
-**Saída esperada:** 210.734 documentos indexados em ≈ 19 minutos, sem erros.
-
-### 4. Consultas QA@CLEF 2008 (executa no servidor)
-
-```bash
-python3 03_consultas_qa.py \
-    --xml   /opt/pri-trabalho-final/QA-CLEF08-PT-PT_test.xml \
-    --chave SUA_MASTER_KEY
-```
-
-Opções disponíveis:
-
-```
---xml      Caminho para o ficheiro XML das questões  (obrigatório)
---host     Endereço do Meilisearch                   (padrão: http://localhost:7700)
---chave    Master key do Meilisearch                 (obrigatório)
---indice   Nome do índice                            (padrão: chave)
---topk     Documentos por consulta                   (padrão: 10)
---saida    Pasta de saída para os resultados         (padrão: ./resultados)
-```
-
-O script executa as 200 perguntas nos dois modos (original e com anáforas resolvidas) e exibe um quadro comparativo no terminal.
-
----
-
-## Configuração do Índice Meilisearch
-
-O índice `chave` é criado automaticamente pelo script `02_indexar_chave.py` com a seguinte configuração:
-
-```json
-{
-  "searchableAttributes": ["texto", "titulo_extraido"],
-  "filterableAttributes": ["fonte", "ano", "categoria"],
-  "sortableAttributes":   ["data", "ano"],
-  "rankingRules": ["words", "typo", "proximity", "attribute", "sort", "exactness"]
-}
-```
-
-### Estrutura dos Documentos JSON
-
-Cada documento indexado segue o esquema:
+Cada documento é representado pelo seguinte esquema:
 
 ```json
 {
@@ -187,47 +69,72 @@ Cada documento indexado segue o esquema:
   "data":            "1994-01-01",
   "ano":             1994,
   "categoria":       "Economia",
-  "texto":           "Texto integral do artigo jornalístico...",
+  "texto":           "Texto integral do artigo...",
   "ficheiro_origem": "ED940101.sgml",
-  "titulo_extraido": "Título opcional extraído da primeira linha"
+  "titulo_extraido": "Título opcional (primeira linha do texto, quando identificável)"
 }
 ```
 
-O campo `titulo_extraido` é opcional, por ausência de marcação SGML consistente de títulos na Coleção CHAVE.
+O campo `titulo_extraido` é tratado como atributo opcional, por ausência de marcação SGML consistente de títulos na coleção.
+
+### Fase 2 — Indexação (`scripts/02_indexar_chave.py`)
+
+Configura o índice `chave` no Meilisearch e envia os lotes JSON sequencialmente via API REST, aguardando a confirmação de cada tarefa assíncrona antes de avançar. A configuração do índice reflete as decisões metodológicas do grupo:
+
+| Parâmetro | Configuração |
+|-----------|-------------|
+| `searchableAttributes` | `texto`, `titulo_extraido` |
+| `filterableAttributes` | `fonte`, `ano`, `categoria` |
+| `sortableAttributes` | `data`, `ano` |
+| `rankingRules` | Configuração padrão Meilisearch v1.13.0 |
+
+### Fase 3 — Consultas e avaliação (`scripts/03_consultas_qa.py`)
+
+Executa as 200 questões do QA@CLEF 2008 em dois modos distintos. No **modo original**, as perguntas são submetidas ao sistema exatamente como constam no ficheiro XML. No **modo resolvido**, as perguntas com dependência anafórica são expandidas com o referente explícito, conforme o dicionário de resoluções em `scripts/resolucao_anaforas.py`. Os resultados de ambos os modos são exportados em CSV para análise comparativa.
 
 ---
 
-## Decisões Metodológicas Relevantes
+## Tratamento de dependências anafóricas
 
-### Resolução de Dependências Anafóricas
+Das 200 questões do conjunto de teste, 88 integram grupos temáticos com dependência contextual entre perguntas consecutivas. O ficheiro `scripts/resolucao_anaforas.py` documenta a resolução manual aplicada a cada caso, com classificação explícita:
 
-Das 200 perguntas do QA@CLEF 2008, 50 apresentam dependência anafórica — pronomes ou elipses que remetem para referentes de perguntas anteriores do mesmo grupo temático. O ficheiro `resolucao_anaforas.py` documenta a resolução manual aplicada, com classificação de cada caso em:
+- **RESOLVIDA** (50 perguntas): substituição direta do pronome ou elipse pelo referente nominal da pergunta âncora do grupo — por exemplo, *"Quando é que ele foi criado?"* torna-se *"Quando é que Tintin foi criado?"*
+- **PARCIAL** (1 pergunta): resolução aproximada com ambiguidade residual documentada
+- **INALTERADA** (37 perguntas): pergunta âncora do grupo, independente por natureza
 
-- **RESOLVIDA** — substituição direta do referente (50 perguntas)
-- **PARCIAL** — resolução aproximada com ambiguidade residual documentada (1 pergunta)
-- **INALTERADA** — pergunta âncora do grupo, independente (37 perguntas)
-
-### Perguntas sem Resultado
-
-As perguntas q_0031 (*"Quem disse 'alea iacta est'?"*) e q_0187 (*"Quem foi o 'pai do teatro português'?"*) não retornaram resultados em nenhum dos dois modos. A causa identificada foi a presença de aspas duplas no texto da query, que o Meilisearch interpretou como operador de busca por frase exata. A sanitização prévia das queries eliminaria este comportamento.
-
-### Codificação do Corpus
-
-Os ficheiros SGML da Coleção CHAVE estão codificados em ISO-8859-1. A conversão para UTF-8 é realizada automaticamente pelo script de pré-processamento durante a extração.
+A comparação entre os dois modos de consulta constitui um dos eixos de análise do relatório.
 
 ---
 
-## Infraestrutura
+## Estrutura do repositório
 
-| Componente | Especificação |
-|------------|---------------|
-| Servidor | VPS OCI NVMe 2 |
-| Sistema Operativo | AlmaLinux 9.7 |
-| RAM | 3,6 GB |
-| Disco | 50 GB NVMe |
-| Motor de busca | Meilisearch v1.13.0 |
-| Endpoint público | http://meilisearch.webersouza.com.br |
-| Porta | 7700 (via proxy Nginx) |
+```
+pri-trabalho-final-grupo04/
+│
+├── README.md
+│
+├── scripts/
+│   ├── 01_preprocessar_chave.py       # Pré-processamento: SGML → JSON
+│   ├── 02_indexar_chave.py            # Indexação no Meilisearch
+│   ├── 03_consultas_qa.py             # Consultas e exportação de resultados
+│   └── resolucao_anaforas.py          # Resoluções anafóricas documentadas
+│
+├── qa/
+│   └── QA-CLEF08-PT-PT_test.xml       # 200 questões QA@CLEF 2008 (PT-PT)
+│
+├── corpus/
+│   └── README_corpus.md               # Instruções para obter a Coleção CHAVE
+│
+├── resultados/
+│   ├── resultados_original.csv        # Top-10 por pergunta — modo original
+│   ├── resultados_resolvida.csv       # Top-10 por pergunta — modo resolvido
+│   ├── metricas.json                  # Métricas de cobertura e tempo
+│   ├── relatorio_preprocessamento.json
+│   └── relatorio_indexacao.json
+│
+└── avaliacao/
+    └── avaliacao_qualitativa_qa.xlsx  # Planilha de avaliação qualitativa manual
+```
 
 ---
 
@@ -241,8 +148,4 @@ Os ficheiros SGML da Coleção CHAVE estão codificados em ISO-8859-1. A convers
 
 ---
 
-## Licença
-
-Os scripts deste repositório são disponibilizados para fins académicos no contexto da UC de PRI do MEIW — Universidade Aberta / UTAD.
-
-A Coleção CHAVE é propriedade da Linguateca e está sujeita às suas condições de uso. Os resultados obtidos fora das avaliações oficiais CLEF não devem ser apresentados como avaliação oficial CLEF.
+*Os resultados obtidos neste trabalho não constituem avaliação oficial CLEF. A Coleção CHAVE é propriedade da Linguateca e está sujeita às suas condições de uso.*
