@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-06-18T23:24:14.353789",
+  "indice": "chave",
+  "top_k": 10,
+  "original": {
+    "modo": "original",
+    "total_perguntas": 200,
+    "com_resultados": 198,
+    "sem_resultados": 2,
+    "cobertura_pct": 99.0,
+    "cobertura_top1_pct": 99.0,
+    "cobertura_top3_pct": 99.0,
+    "cobertura_top5_pct": 99.0,
+    "cobertura_top10_pct": 99.0,
+    "tempo_medio_ms": 71.3,
+    "tempo_max_ms": 316.8,
+    "tempo_min_ms": 2.3,
+    "distribuicao_fonte_doc1": {
+      "Publico": 147,
+      "Folha": 51
+    },
+    "nota_avaliacao": "Success@k e MRR requerem gabarito manual de respostas corretas. A cobertura aqui reportada indica apenas se o sistema retornou algum documento, não se o documento contém a resposta correta. A avaliação qualitativa manual consta do relatório."
+  },
+  "resolvida": {
+    "modo": "resolvida",
+    "total_perguntas": 200,
+    "com_resultados": 198,
+    "sem_resultados": 2,
+    "cobertura_pct": 99.0,
+    "cobertura_top1_pct": 99.0,
+    "cobertura_top3_pct": 99.0,
+    "cobertura_top5_pct": 99.0,
+    "cobertura_top10_pct": 99.0,
+    "tempo_medio_ms": 67.6,
+    "tempo_max_ms": 213.9,
+    "tempo_min_ms": 2.8,
+    "distribuicao_fonte_doc1": {
+      "Publico": 151,
+      "Folha": 47
+    },
+    "nota_avaliacao": "Success@k e MRR requerem gabarito manual de respostas corretas. A cobertura aqui reportada indica apenas se o sistema retornou algum documento, não se o documento contém a resposta correta. A avaliação qualitativa manual consta do relatório."
+  }
+}

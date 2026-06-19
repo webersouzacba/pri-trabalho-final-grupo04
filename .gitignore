@@ -1,0 +1,40 @@
+# Ficheiros da Coleção CHAVE (não redistribuíveis)
+*.sgml
+*.zip
+CHAVEPublico*/
+CHAVEFolha*/
+
+# Lotes JSON gerados pelo pré-processamento (volume elevado)
+json_lotes/
+chave_lote_*.json
+
+# Credenciais e configuração local
+.env
+*.key
+config_local.py
+
+# Ficheiros temporários Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+
+# Ficheiros de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ficheiros de log
+*.log

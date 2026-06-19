@@ -1,0 +1,44 @@
+{
+  "timestamp_conclusao": "2026-06-18T18:49:52.730678",
+  "indice": "chave",
+  "total_lotes_processados": 43,
+  "total_docs_enviados": 210734,
+  "total_docs_indexados": 210734,
+  "docs_confirmados_no_indice": 210734,
+  "duracao_total_segundos": 1138.4,
+  "duracao_media_por_lote_s": 26.1,
+  "erros": [],
+  "configuracao_aplicada": {
+    "searchableAttributes": [
+      "texto",
+      "titulo_extraido"
+    ],
+    "filterableAttributes": [
+      "fonte",
+      "ano",
+      "categoria"
+    ],
+    "sortableAttributes": [
+      "data",
+      "ano"
+    ],
+    "displayedAttributes": [
+      "id",
+      "fonte",
+      "data",
+      "ano",
+      "categoria",
+      "texto",
+      "ficheiro_origem",
+      "titulo_extraido"
+    ],
+    "rankingRules": [
+      "words",
+      "typo",
+      "proximity",
+      "attribute",
+      "sort",
+      "exactness"
+    ]
+  }
+}
