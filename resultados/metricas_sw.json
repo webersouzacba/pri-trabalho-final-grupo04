@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-06-19T14:50:32.586763",
+  "stop_words_aplicadas": true,
+  "n_stop_words": 126,
+  "original_sw": {
+    "modo": "original_sw",
+    "total": 200,
+    "com_resultado": 198,
+    "cobertura_pct": 99.0,
+    "hits_estimados_medio": 965,
+    "tempo_medio_ms": 28.5,
+    "tempo_max_ms": 172.2,
+    "distribuicao_fonte_doc1": {
+      "Publico": 135,
+      "Folha": 63
+    }
+  },
+  "resolvida_sw": {
+    "modo": "resolvida_sw",
+    "total": 200,
+    "com_resultado": 198,
+    "cobertura_pct": 99.0,
+    "hits_estimados_medio": 965,
+    "tempo_medio_ms": 20.0,
+    "tempo_max_ms": 88.5,
+    "distribuicao_fonte_doc1": {
+      "Publico": 135,
+      "Folha": 63
+    }
+  }
+}
